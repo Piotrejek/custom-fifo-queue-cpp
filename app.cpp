@@ -38,6 +38,7 @@ public:
         data = nullptr;
     }
 
+    // Konstruktor kopiujący wykonujący kopię głęboką
     Queue(const Queue& other) : capacity(other.capacity), head(other.head), count(other.count) {
         data = new int[capacity];
         for (int i = 0; i < capacity; ++i) {
@@ -45,6 +46,7 @@ public:
         }
     }
 
+    // Operator przypisania wykonujący kopię głęboką
     Queue& operator=(const Queue& other) {
         if (this != &other) {
             int* newData = new int[other.capacity];
@@ -80,7 +82,7 @@ public:
         count--;
     }
 
-    int peek() const {
+    int front() const {
         if (isEmpty()) {
             cout << "Queue is empty!" << endl;
             return -1;
@@ -172,7 +174,7 @@ int main(int argc, char const *argv[])
     while (true) {
         cout << "\n1. Add new" << endl;
         cout << "2. Remove" << endl;
-        cout << "3. Peek" << endl;
+        cout << "3. Front" << endl;
         cout << "4. Display" << endl;
         cout << "5. Exit" << endl;
 
@@ -192,7 +194,7 @@ int main(int argc, char const *argv[])
                 myQueue.dequeue();
                 break;
             case 3: {
-                int frontValue = myQueue.peek();
+                int frontValue = myQueue.front();
                 if (frontValue != -1) {
                     cout << "Front value: " << frontValue << endl;
                 }
